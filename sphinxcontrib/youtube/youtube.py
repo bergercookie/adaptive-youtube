@@ -39,14 +39,17 @@ def visit_youtube_node(self, node):
         else:
             raise ValueError("Specify the width in px if you specify the height in %.")
     else:
-        if height is None and width[1] == "px":
-            height = width[0] * aspect[1] / aspect[0], "px"
+        if height is None:
+            if width[1] == "px":
+                height = width[0] * aspect[1] / aspect[0], "px"
+            else:
+                height = 100, "%"
         elif height is not None and height[1] == width[1]:
             aspect = width[0], height[0]
         elif width[1] == "px" and height[1] == "%":
             height = width[0]*height[0]/100, "px"
         else:
-            raise ValueError("Specify the width in px if you use hight in %.")
+            raise ValueError("Specify the width in px if you use height in %.")
     
     absolute_wrapper_style = {
         "width": "100%",
