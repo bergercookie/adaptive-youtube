@@ -1,7 +1,7 @@
 #-*- coding:utf-8 -*-
 
 import setuptools
-from sphinxcontrib import yt as pkg
+from sphinxcontrib import youtube as pkg
 
 pkgname = pkg.__name__
 
@@ -27,6 +27,7 @@ Programming Language :: Python :: 2.6
 Programming Language :: Python :: 2.7
 Programming Language :: Python :: 3
 Programming Language :: Python :: 3.3
+Programming Language :: Python :: 3.7
 Topic :: Software Development :: Documentation
 '''.strip().splitlines())
 

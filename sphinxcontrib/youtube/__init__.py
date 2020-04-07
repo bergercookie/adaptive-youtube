@@ -30,16 +30,16 @@ finally, build your sphinx project.
 
 '''
 
-__version__ = '0.2.2'
+__version__ = '0.2.3'
 __author__ = '@shomah4a'
 __license__ = 'LGPLv3'
 
 
+from . import youtube
+
+node_visitors = youtube._NODE_VISITORS
 
 def setup(app):
 
-    from . import youtube
-
-    app.add_node(youtube.youtube,
-                 html=(youtube.visit, youtube.depart))
-    app.add_directive('youtube', youtube.YoutubeDirective)
+   app.add_node(youtube.youtube, **node_visitors)
+   app.add_directive("youtube", youtube.YouTube)
