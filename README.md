@@ -28,5 +28,5 @@ Never destroy your UI with overflowing videos. Even if you set a large fix size 
 Install:
 
 ```shell
-pip3 install sphinxcontrib-adaptive-youtube
+pip3 install sphinxcontrib-adaptive_youtube
 ```
