@@ -21,7 +21,7 @@ setuptools.setup(
     namespace_packages=['sphinxext'],
     classifiers='''
 Programming Language :: Python
-Development Status :: 1 - Alpha
+Development Status :: 4 - Beta
 License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
 Programming Language :: Python :: 3
 Programming Language :: Python :: 3.3
