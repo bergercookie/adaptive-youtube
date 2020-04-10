@@ -10,8 +10,7 @@ setuptools.setup(
     version=pkg.__version__,
     packages=setuptools.find_packages(),
     install_requires=[
-        'sphinx',
-        'urllib'
+        'sphinx'
         ],
     author=pkg.__author__,
     license=pkg.__license__,
