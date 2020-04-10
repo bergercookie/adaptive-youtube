@@ -11,8 +11,6 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-.. youtube:: http://www.youtube.com/watch?v=Ql9sn3aLLlI
-
 .. youtube:: Ql9sn3aLLlI
 
 Indices and tables

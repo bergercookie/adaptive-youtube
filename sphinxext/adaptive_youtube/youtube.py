@@ -6,8 +6,14 @@ from __future__ import division
 import re
 from docutils import nodes
 from docutils.parsers.rst import directives, Directive
+import urllib.parse as urlparse
 
 CONTROL_HEIGHT = 30
+
+def get_id(argument):
+    if argument.startswith('http://') or argument.startswith('https://'):
+        return urlparse.parse_qs(urlparse.urlparse(argument).query)['v'][0]
+    return argument
 
 def get_size(d, key):
     if key not in d:
@@ -126,7 +132,7 @@ class YouTube(Directive):
 
         width = get_size(self.options, "width")
         height = get_size(self.options, "height")
-        return [youtube(id=self.arguments[0], aspect=aspect, width=width, height=height)]
+        return [youtube(id=get_id(self.arguments[0]), aspect=aspect, width=width, height=height)]
 
 
 def unsupported_visit_youtube(self, node):

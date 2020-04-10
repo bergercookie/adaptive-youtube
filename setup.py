@@ -1,7 +1,7 @@
 #-*- coding:utf-8 -*-
 
 import setuptools
-from sphinxcontrib import youtube as pkg
+from sphinxext import adaptive_youtube as pkg
 
 pkgname = pkg.__name__
 
@@ -14,13 +14,13 @@ setuptools.setup(
         ],
     author=pkg.__author__,
     license=pkg.__license__,
-    url='https://github.com/divi255/sphinxcontrib.youtube',
+    url='https://github.com/john-sane/adaptive-youtube',
     description='''embedding gist to sphinx''',
     long_description=pkg.__doc__,
-    namespace_packages=['sphinxcontrib'],
+    namespace_packages=['sphinxext'],
     classifiers='''
 Programming Language :: Python
-Development Status :: 4 - Beta
+Development Status :: 1 - Alpha
 License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
 Programming Language :: Python :: 3
 Programming Language :: Python :: 3.3
