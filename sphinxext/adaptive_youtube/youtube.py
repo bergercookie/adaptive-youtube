@@ -8,8 +8,6 @@ from docutils import nodes
 from docutils.parsers.rst import directives, Directive
 import urllib.parse as urlparse
 
-CONTROL_HEIGHT = 30
-
 def get_id(argument):
     if argument.startswith('http://') or argument.startswith('https://'):
         return urlparse.parse_qs(urlparse.urlparse(argument).query)['v'][0]
