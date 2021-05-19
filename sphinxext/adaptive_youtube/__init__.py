@@ -30,10 +30,6 @@ finally, build your sphinx project.
 
 '''
 
-__version__ = '0.0.1'
-__author__ = '@john_sane'
-__license__ = 'LGPLv3'
-
 from . import youtube
 
 node_visitors = youtube._NODE_VISITORS

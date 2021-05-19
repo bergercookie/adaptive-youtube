@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import division
-
 import re
 from docutils import nodes
 from docutils.parsers.rst import directives, Directive
 import urllib.parse as urlparse
 
+
 def get_id(argument):
-    if argument.startswith('http://') or argument.startswith('https://'):
-        return urlparse.parse_qs(urlparse.urlparse(argument).query)['v'][0]
+    if argument.startswith("http://") or argument.startswith("https://"):
+        return urlparse.parse_qs(urlparse.urlparse(argument).query)["v"][0]
     return argument
+
 
 def get_size(d, key):
     if key not in d:
@@ -21,10 +21,14 @@ def get_size(d, key):
         raise ValueError("invalid size %r" % d[key])
     return int(m.group(1)), m.group(2) or "px"
 
+
 def css(d):
     return "; ".join(sorted("%s: %s" % kv for kv in d.items()))
 
-class youtube(nodes.General, nodes.Element): pass
+
+class youtube(nodes.General, nodes.Element):
+    pass
+
 
 def visit_youtube_node(self, node):
     aspect = node["aspect"]
@@ -51,10 +55,10 @@ def visit_youtube_node(self, node):
         elif height is not None and height[1] == width[1]:
             aspect = width[0], height[0]
         elif width[1] == "px" and height[1] == "%":
-            height = width[0]*height[0]/100, "px"
+            height = width[0] * height[0] / 100, "px"
         else:
             raise ValueError("Specify the width in px if you use height in %.")
-    
+
     absolute_wrapper_style = {
         "width": "100%",
         "height": "100%",
@@ -100,11 +104,16 @@ def visit_youtube_node(self, node):
     self.body.append(self.starttag(node, "iframe", **iframe_attrs))
     self.body.append("</iframe></div></div>")
 
+
 def depart_youtube_node(self, node):
     pass
 
-def visit_youtube_node_latex(self,node):
-    self.body.append(r'\begin{quote}\begin{center}\fbox{\url{https://youtu.be/%s}}\end{center}\end{quote}'%node['id'])
+
+def visit_youtube_node_latex(self, node):
+    self.body.append(
+        r"\begin{quote}\begin{center}\fbox{\url{https://youtu.be/%s}}\end{center}\end{quote}"
+        % node["id"]
+    )
 
 
 class YouTube(Directive):
@@ -130,17 +139,20 @@ class YouTube(Directive):
 
         width = get_size(self.options, "width")
         height = get_size(self.options, "height")
-        return [youtube(id=get_id(self.arguments[0]), aspect=aspect, width=width, height=height)]
+        return [
+            youtube(id=get_id(self.arguments[0]), aspect=aspect, width=width, height=height)
+        ]
 
 
 def unsupported_visit_youtube(self, node):
-    self.builder.warn('youtube: unsupported output format (node skipped)')
+    self.builder.warn("youtube: unsupported output format (node skipped)")
     raise nodes.SkipNode
 
+
 _NODE_VISITORS = {
-      'html': (visit_youtube_node, depart_youtube_node),
-      'latex': (visit_youtube_node_latex, depart_youtube_node),
-      'man': (unsupported_visit_youtube, None),
-      'texinfo': (unsupported_visit_youtube, None),
-      'text': (unsupported_visit_youtube, None)
+    "html": (visit_youtube_node, depart_youtube_node),
+    "latex": (visit_youtube_node_latex, depart_youtube_node),
+    "man": (unsupported_visit_youtube, None),
+    "texinfo": (unsupported_visit_youtube, None),
+    "text": (unsupported_visit_youtube, None),
 }
